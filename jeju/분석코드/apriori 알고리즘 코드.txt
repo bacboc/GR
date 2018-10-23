@@ -1,3 +1,7 @@
+/*
+	참고자료 : https://github.com/jjkyun/DataMining/apriori
+/*
+
 import sys
 import itertools
 from pprint import pprint
