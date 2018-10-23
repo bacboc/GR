@@ -1,19 +1,21 @@
-<!DOCTYPE html>
+<!-- 제주 여행 리뷰 -->
+<!DOCTYPE html>  
 <html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>JEJU</title>
+    <title>ByoungChan</title>
 
     <!-- 부트스트랩 -->
     <link href="tool/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=AlWeVmj86pAZl3ts8CpR&submodules=geocoder"></script>
+  
     <style>
         body{
           padding-top:20px;
-          background-image:url("img/jeju1.jpg");
+          background-image:url("img/jeju2.jpg");
           background-attachment:fixed;
           background-size:cover;
           color: white;
@@ -58,9 +60,9 @@
  	<div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8 back">
-      <h1> Jeju </h1>
-
-
+        <h1 style="padding-bottom: 5px "> 제주 월별 키워드 분석 </h1>
+        <div id="myChart"></div>
+        <h1> &nbsp; </h1>
     </div>
     <div class="col-sm-2">
     </div>
@@ -70,5 +72,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="tool/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="./mychart.js"></script>
   </body>
 </html>
