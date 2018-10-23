@@ -10,6 +10,7 @@
     <!-- 부트스트랩 -->
     <link href="tool/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=AlWeVmj86pAZl3ts8CpR&submodules=geocoder"></script>
+    <script src = 'keyword.js'></script>
     <style>
         body{
           padding-top:20px;
@@ -54,13 +55,25 @@
       </div>
     </div>
  	<!-- 본문 내용 채우기 -->
+<!-- 
 
+-->
  	<div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8 back">
       <h1> Jeju </h1>
-    
+      <button type="button" class="btn btn-primary" onclick="button1()"> 애 월 </button>
+<button type="button" class="btn btn-secondary" style="color:black;" onclick="button2()"> 한라산 </button>
+<button type="button" class="btn btn-success" onclick="botton3()"> 우 도 </button>
+<button type="button" class="btn btn-danger" onclick="botton4()"> 올레길 </button>
+<button type="button" class="btn btn-warning" onclick="botton5()"> 서귀포 </button>
+<button type="button" class="btn btn-info"onclick="botton6()"> 오 름 </button>
+<button type="button" class="btn btn-primary"onclick="botton7()"> 해수욕장 </button>
+<button type="button" class="btn btn-secondary" style="color:black;"onclick="botton8()"> 카 페 </button>
+<button type="button" class="btn btn-success"onclick="botton9()"> 맛 집 </button>
+      <h2 id='t'> 버튼을 클릭하세요 </h2>
 
+      <div id='ct' style="font-size: 15px; margin-bottom: 20px;">  </div>
     </div>
     <div class="col-sm-2">
     </div>
