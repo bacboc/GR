@@ -15,6 +15,7 @@
           new naver.maps.LatLng(33.394058, 126.239814),
           new naver.maps.LatLng(33.3972343,126.2406504)
         ]
+        var _title =['흑돼지천왕','한라산','우유부단','협재해수욕장','그해제주'];
         var map = new naver.maps.Map('map',{
         zoom: 5 //맵 크기
         });
@@ -34,15 +35,55 @@
         map: map         //오버레이할 지도
       });
       var idx = 0;
+      var markerList=[];
+      var infoWindows = [];
       var arr=polylinePath.length;
       while(idx < polylinePath.length){
-        arr[idx] = new naver.maps.Marker({
-            position: polylinePath[idx],// 마크 표시할 배열중 원소
+        //arr[idx]
+        marker = new naver.maps.Marker({
+            position: polylinePath[idx],  // 마크 표시할 배열중 원소
+            title: _title[idx],
             map:map
         });
+        
+        //알림 창 만들기 
+        var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="color:black;width:120px;text-align:center;padding:10px;"> <b>'+marker.getTitle()+'</b></div>'
+        });
+        // marker와 알림창 배열에 담아두기 
+        markerList.push(marker);
+        infoWindows.push(infoWindow);
+        // 마커에대한 이벤트 리스너 등록 
+        //marker.addListener('mouseover', onMouseOver);
+        marker.addListener('click', onMouseClick);
+        //marker.addListener('mouseout', onMouseOut);
         idx = idx+1;
+        marker=null;
+        infowindow=null;
       }
-      map.setCenter(polylinePath[polylinePath.length/2]); 
+
+      function getOverHandler(seq) {
+        return function(e) {
+          var marker = markerList[seq],
+          infoWindow = infoWindows[seq];
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(map, marker);
+          }
+        }
+      }
+      for (var i=0, ii=markerList.length; i<ii; i++) {
+        naver.maps.Event.addListener(markerList[i], 'mouseover', getOverHandler(i));
+      }
+      
+      function onMouseClick(e){
+        var marker = e.overlay;
+        document.getElementById('real1').innerHTML = "<h3>실제 트윗 : " + marker.getTitle()+"</h3>"
+        document.getElementById('real').innerHTML = RealContent(marker.getTitle());
+      }
+      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표를 중심으로 지도 이동
+      
       }
       
       function B(){
@@ -61,6 +102,7 @@
           new naver.maps.LatLng(33.4517789,126.6628665),
           new naver.maps.LatLng(33.523979,126.5605173)
         ]
+        var _title =['앙끄레국수','애월 버터모닝','하멜베이커리','에코랜드','멜록 게스트하우스'];
         var map = new naver.maps.Map('map',{
         zoom: 5 //맵 크기
         });
@@ -81,15 +123,55 @@
       });
 
       var idx = 0;
+      var markerList=[];
+      var infoWindows = [];
       var arr=polylinePath.length;
       while(idx < polylinePath.length){
-        arr[idx] = new naver.maps.Marker({
-            position: polylinePath[idx],// 마크 표시할 배열중 원소
+        //arr[idx]
+        marker = new naver.maps.Marker({
+            position: polylinePath[idx],  // 마크 표시할 배열중 원소
+            title: _title[idx],
             map:map
         });
+        
+        //알림 창 만들기 
+        var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="color:black;width:120px;text-align:center;padding:10px;"> <b>'+marker.getTitle()+'</b></div>'
+        });
+        // marker와 알림창 배열에 담아두기 
+        markerList.push(marker);
+        infoWindows.push(infoWindow);
+        // 마커에대한 이벤트 리스너 등록 
+        //marker.addListener('mouseover', onMouseOver);
+        marker.addListener('click', onMouseClick);
+        //marker.addListener('mouseout', onMouseOut);
         idx = idx+1;
+        marker=null;
+        infowindow=null;
       }
-      map.setCenter(polylinePath[polylinePath.length/2]); 
+
+      function getOverHandler(seq) {
+        return function(e) {
+          var marker = markerList[seq],
+          infoWindow = infoWindows[seq];
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(map, marker);
+          }
+        }
+      }
+      for (var i=0, ii=markerList.length; i<ii; i++) {
+        naver.maps.Event.addListener(markerList[i], 'mouseover', getOverHandler(i));
+      }
+      
+      function onMouseClick(e){
+        var marker = e.overlay;
+        document.getElementById('real1').innerHTML = "<h3>실제 트윗 : " + marker.getTitle()+"</h3>"
+        document.getElementById('real').innerHTML = RealContent(marker.getTitle());
+      }
+      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표를 중심으로 지도 이동
+      
       }
       function C(){
         //Hard코스:
@@ -128,15 +210,55 @@
       });
 
       var idx = 0;
+      var markerList=[];
+      var infoWindows = [];
       var arr=polylinePath.length;
       while(idx < polylinePath.length){
-        arr[idx] = new naver.maps.Marker({
-            position: polylinePath[idx],// 마크 표시할 배열중 원소
+        //arr[idx]
+        marker = new naver.maps.Marker({
+            position: polylinePath[idx],  // 마크 표시할 배열중 원소
+            title: _title[idx],
             map:map
         });
+        
+        //알림 창 만들기 
+        var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="color:black;width:120px;text-align:center;padding:10px;"> <b>'+marker.getTitle()+'</b></div>'
+        });
+        // marker와 알림창 배열에 담아두기 
+        markerList.push(marker);
+        infoWindows.push(infoWindow);
+        // 마커에대한 이벤트 리스너 등록 
+        //marker.addListener('mouseover', onMouseOver);
+        marker.addListener('click', onMouseClick);
+        //marker.addListener('mouseout', onMouseOut);
         idx = idx+1;
+        marker=null;
+        infowindow=null;
       }
-      map.setCenter(polylinePath[polylinePath.length/2]); 
+
+      function getOverHandler(seq) {
+        return function(e) {
+          var marker = markerList[seq],
+          infoWindow = infoWindows[seq];
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(map, marker);
+          }
+        }
+      }
+      for (var i=0, ii=markerList.length; i<ii; i++) {
+        naver.maps.Event.addListener(markerList[i], 'mouseover', getOverHandler(i));
+      }
+      
+      function onMouseClick(e){
+        var marker = e.overlay;
+        document.getElementById('real1').innerHTML = "<h3>실제 트윗 : " + marker.getTitle()+"</h3>"
+        document.getElementById('real').innerHTML = RealContent(marker.getTitle());
+      }
+      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표를 중심으로 지도 이동
+      
       }
       function D(){
         //친구코스
@@ -173,15 +295,55 @@
       });
 
       var idx = 0;
+      var markerList=[];
+      var infoWindows = [];
       var arr=polylinePath.length;
       while(idx < polylinePath.length){
-        arr[idx] = new naver.maps.Marker({
-            position: polylinePath[idx],// 마크 표시할 배열중 원소
+        //arr[idx]
+        marker = new naver.maps.Marker({
+            position: polylinePath[idx],  // 마크 표시할 배열중 원소
+            title: _title[idx],
             map:map
         });
+        
+        //알림 창 만들기 
+        var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="color:black;width:120px;text-align:center;padding:10px;"> <b>'+marker.getTitle()+'</b></div>'
+        });
+        // marker와 알림창 배열에 담아두기 
+        markerList.push(marker);
+        infoWindows.push(infoWindow);
+        // 마커에대한 이벤트 리스너 등록 
+        //marker.addListener('mouseover', onMouseOver);
+        marker.addListener('click', onMouseClick);
+        //marker.addListener('mouseout', onMouseOut);
         idx = idx+1;
+        marker=null;
+        infowindow=null;
       }
-      map.setCenter(polylinePath[polylinePath.length/2]); 
+
+      function getOverHandler(seq) {
+        return function(e) {
+          var marker = markerList[seq],
+          infoWindow = infoWindows[seq];
+          if (infoWindow.getMap()) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(map, marker);
+          }
+        }
+      }
+      for (var i=0, ii=markerList.length; i<ii; i++) {
+        naver.maps.Event.addListener(markerList[i], 'mouseover', getOverHandler(i));
+      }
+      
+      function onMouseClick(e){
+        var marker = e.overlay;
+        document.getElementById('real1').innerHTML = "<h3>실제 트윗 : " + marker.getTitle()+"</h3>"
+        document.getElementById('real').innerHTML = RealContent(marker.getTitle());
+      }
+      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표를 중심으로 지도 이동
+      
       }
 
 
