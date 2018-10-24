@@ -105,8 +105,8 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
 
 -->
     <div class="row">
-    <div class="col-sm-2"></div>
     <div class="col-sm-8">
+      <div style = "margin-left: 20px">
       <h1> Jeju </h1>
 
       
@@ -118,15 +118,6 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
 
       <!-- 맵을 표시할 태그  -->
       <div id="map" style="width:100%;height:550px;"></div>
-      <script type="text/javascript">
-        var polylinePath = [ 
-          new naver.maps.LatLng(33.3892576,126.799015),
-          new naver.maps.LatLng(33.3616666,126.52916660000005),
-          new naver.maps.LatLng(33.3476411,126.3260766),
-          new naver.maps.LatLng(33.394058, 126.239814),
-          new naver.maps.LatLng(33.3972343,126.2406504)
-        ]
-      </script>
       <script>
       //맵 객체 생성 
       var map = new naver.maps.Map('map',{
@@ -134,14 +125,19 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
       });
 
       var myaddress = '제주';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
+      var _title =['흑돼지천왕','한라산','우유부단','협재해수욕장','그해제주'];
+        var polylinePath = [ 
+          new naver.maps.LatLng(33.3892576,126.799015),
+          new naver.maps.LatLng(33.3616666,126.52916660000005),
+          new naver.maps.LatLng(33.3476411,126.3260766),
+          new naver.maps.LatLng(33.394058, 126.239814),
+          new naver.maps.LatLng(33.3972343,126.2406504)
+        ];
       naver.maps.Service.geocode({address: myaddress}, function(status, response) {
           if (status !== naver.maps.Service.Status.OK) {
               return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
           }
           var result = response.result;
-          // 검색 결과 갯수: result.total
-          // 첫번째 결과 결과 주소: result.items[0].address
-          // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
           var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
           map.setCenter(myaddr); // 검색된 좌표로 지도 이동
       });
@@ -156,32 +152,67 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
       });
 
       var idx = 0;
+      var markerList=[];
+      var infoWindows = [];
       var arr=polylinePath.length;
       while(idx < polylinePath.length){
-        arr[idx] = new naver.maps.Marker({
-            position: polylinePath[idx],// 마크 표시할 배열중 원소
+        //arr[idx]
+        marker = new naver.maps.Marker({
+            position: polylinePath[idx],  // 마크 표시할 배열중 원소
+            title: _title[idx],
             map:map
         });
+        
+        //알림 창 만들기 
+        var infoWindow = new naver.maps.InfoWindow({
+        content: '<div style="color:black;width:120px;text-align:center;padding:10px;"> <b>'+marker.getTitle()+'</b></div>'
+        });
+        // marker와 알림창 배열에 담아두기 
+        markerList.push(marker);
+        infoWindows.push(infoWindow);
+        // 마커에대한 이벤트 리스너 등록 
+        //marker.addListener('mouseover', onMouseOver);
+        marker.addListener('click', onMouseClick);
+        //marker.addListener('mouseout', onMouseOut);
         idx = idx+1;
+        marker=null;
+        infowindow=null;
       }
-      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표로 지도 이동
 
-      // 마커 클릭 이벤트 처리
-        naver.maps.Event.addListener(marker, "click", function(e) {
-          if (infowindow.getMap()) {
-              infowindow.close();
+      function getOverHandler(seq) {
+        return function(e) {
+          var marker = markerList[seq],
+          infoWindow = infoWindows[seq];
+          if (infoWindow.getMap()) {
+            infoWindow.close();
           } else {
-              infowindow.open(map, marker);
+            infoWindow.open(map, marker);
           }
-        });
-        // 마크 클릭시 인포윈도우 오픈
-        var infowindow = new naver.maps.InfoWindow({
-              content: '<h4> [몽상드 애월]</h4><a href="https://www.google.com/maps/place/몽상드애월/@33.4628964,126.3091208,15z/data=!4m5!3m4!1s0x0:0x29f8a036802d64aa!8m2!3d33.4628964!4d126.3091208" target="_blank"><img src="http://img.tripnbuy.com/photo/J7XX8NmuBDFH7Aw9OJQ6UbaFSPTHqlvYIMG_2971.jpg" width="80" height ="60"></a>'
-        });
+        }
+      }
+      for (var i=0, ii=markerList.length; i<ii; i++) {
+        naver.maps.Event.addListener(markerList[i], 'mouseover', getOverHandler(i));
+      }
+      
+      function onMouseClick(e){
+        var marker = e.overlay;
+        document.getElementById('real1').innerHTML = "<h3>실제 트윗 : " + marker.getTitle()+"</h3>"
+        document.getElementById('real').innerHTML = RealContent(marker.getTitle());
+      }
+      map.setCenter(polylinePath[polylinePath.length/2]); // 검색된 좌표를 중심으로 지도 이동
+      
       </script>
 
     </div>
-    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+      
+      <div id='real1' size='5' style="margin-left: 5px;margin-top: 150px;background-color: rgba(0,0,0,0.7);">
+      </div>
+
+      <textarea id='real' cols="60" rows="26" height='300' data-spy="scroll" data-offset="0" style="margin-left: 10px;background-color: rgba(0,0,0,0.7);">
+        
+      </textarea>
     </div>
   </div>
 
