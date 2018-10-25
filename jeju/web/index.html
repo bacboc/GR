@@ -43,8 +43,8 @@
 
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="./home.html">Home</a></li>
-                <li><a href="./index.html"> 제주 여행지 추천 </a></li>
+                <li><a href="./home.html">Home</a></li>
+                <li class="active"><a href="./index.html"> 제주 여행지 추천 </a></li>
                 <li><a href="./index1.html"> 제주 월별 키워드 </a></li>
                 <li><a href="./index2.html"> 연관성 분석 </a></li>
                 <li><a href="./index3.html"> 수집 데이터 </a></li>
@@ -105,25 +105,27 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
 
 -->
     <div class="row">
-    <div class="col-sm-8">
-      <div style = "margin-left: 20px">
-      <h1> Jeju </h1>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-7">
+      <div>
+      <h1> 여행지 추천 : <span id='T'></span></h1>
+
 
       
       <button type="button" class="btn btn-primary" onclick="A()">가족 코스</button>
       <button type="button" class="btn btn-info" onclick="B()">데이트 코스</button>
       <button type="button" class="btn btn-success" onclick="C()">Hard 코스</button>
       <button type="button" class="btn btn-warning" onclick="D()">친구 코스</button>
-      <h3 id = "T">가족 코스</h3>
+      <p></p>
 
       <!-- 맵을 표시할 태그  -->
-      <div id="map" style="width:100%;height:550px;"></div>
+      <div id="map" style="width:95%;height:530px;"></div>
       <script>
       //맵 객체 생성 
       var map = new naver.maps.Map('map',{
         zoom: 5 //맵 크기
       });
-
+      document.getElementById("T").innerHTML = "가족 코스 <h4>흑돼지천왕 => 한라산 => 우유부단 => 협재해수욕장 => 그해제주</h4>";
       var myaddress = '제주';// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
       var _title =['흑돼지천왕','한라산','우유부단','협재해수욕장','그해제주'];
         var polylinePath = [ 
@@ -207,10 +209,10 @@ Hard코스:우도->로컬크랩->성산일출봉->섭지코지->아쿠아플래�
     </div>
     <div class="col-sm-4">
       
-      <div id='real1' size='5' style="margin-left: 5px;margin-top: 150px;background-color: rgba(0,0,0,0.7);">
+      <div id='real1' size='5' style="margin-top: 150px;background-color: rgba(0,0,0,0.7);">
       </div>
 
-      <textarea id='real' cols="60" rows="26" height='300' data-spy="scroll" data-offset="0" style="margin-left: 10px;background-color: rgba(0,0,0,0.7);">
+      <textarea id='real' cols="60" rows="26" height='300' data-spy="scroll" data-offset="0" style="background-color: rgba(0,0,0,0.7);">
         
       </textarea>
     </div>
