@@ -190,8 +190,8 @@
         document.getElementById("T").innerHTML = "Hard 코스 <h4>로컬크랩 => 우도 => 성산일출봉 => 섭지코지 => 아쿠아플래닛 => 봄꽃게스트하우스</h4>";
         var _title =['로컬크랩','우도','성산일출봉','섭지코지','아쿠아플래닛','봄꽃게스트하우스'];
         var polylinePath = [ 
-          new naver.maps.LatLng(33.5042977,126.95404800000006),
           new naver.maps.LatLng(33.558142,126.732646),
+          new naver.maps.LatLng(33.5042977,126.95404800000006),
           new naver.maps.LatLng(33.45805600000001,126.9425),
           new naver.maps.LatLng(33.4241107,126.9244073),
           new naver.maps.LatLng(33.4327935,126.9257214),
